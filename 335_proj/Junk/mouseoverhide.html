@@ -1,0 +1,30 @@
+<h1>Show Picture on Mouseover by Wallpaperama.com</h1>
+<script language="Javascript">
+<!--
+function ShowPicture(id,Source) {
+  if (Source=="1"){
+    if (document.layers) document.layers[''+id+''].visibility = "show"
+    else if (document.all) document.all[''+id+''].style.visibility = "visible"
+    else if (document.getElementById) document.getElementById(''+id+'').style.visibility = "visible"
+  }
+  else
+  if (Source=="0"){
+    if (document.layers) document.layers[''+id+''].visibility = "hide"
+    else if (document.all) document.all[''+id+''].style.visibility = "hidden"
+    else if (document.getElementById) document.getElementById(''+id+'').style.visibility = "hidden"
+  }
+}
+</script>
+<style type="text/css">
+#Style {
+	position:absolute;
+	visibility:hidden;
+	border:solid 1px #CCC;
+	padding:5px;
+}
+</style>
+
+<a href="#" onMouseOver="ShowPicture('Style',1)" onMouseOut="ShowPicture('Style',0)">Hover over to show</a>
+<div id="Style">Some Text</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div><a href="http://www.wallpaperama.com">&lt;&lt; Visit Wallpaperama.com For More Cool Javascript Tricks</a></div>

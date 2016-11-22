@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script>
+    //Youtube API and player setup from here https://developers.google.com/youtube/iframe_api_reference#Getting_Started
+        //Sets up Youtube API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        //Sets up Youtube player
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            videoId: '6CGyASDjE-U'
+        });
+      }
+
+        //Calls the function on scroll
+        //Change to onclick when debugging
+        window.onscroll = function() {playOnView()};
+        //Function to play youtube videos inside the viewport
+        function playOnView()
+        {
+            //Gets the video players coordinates on the page
+            var rect = document.getElementById("player").getBoundingClientRect();
+
+            //Get the viewports width and height
+            //Source of viewport dimension solution: http://stackoverflow.com/a/8876069
+            var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+            //Variable to see if the player is unstarted/paused/playing/cued/etc
+            //https://developers.google.com/youtube/iframe_api_reference#Playback_status
+            var pState = player.getPlayerState();
+
+            //If the players bottom coordinate is less than the browsers Y coordinate (Players bottom coordinate is greater than viewport height when the video is further down the page)
+            //And if the players top coordinate is greater than 0 (Becomes negative once you scroll past the video)
+            if(rect.bottom < h && rect.top > 0) {
+                console.log("Player in view!");
+                //If the player is unstarted, paused, or cued, then play the video
+                if(pState == -1 || pState == 2 || pState == 5)
+                    player.playVideo();
+            }
+            else{
+                console.log("Player not in view!");
+                //If the player is currently playing, stop the video
+                if(pState == 1)
+                    player.stopVideo();
+            }
+                //Debugging purposes
+                console.log("Player coordinates: " + rect.top + " " + rect.right + " " + rect.bottom + " " + rect.left);
+                console.log("Current vieport(w,h): " + w + " " + h)
+                console.log("Player state: " + pState)
+        }
+    </script>
+    </head>
+  <body>
+    <p>
+    <script>
+
+    </script>
+      -------------------------------- Video below<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </p>
+    <div id="player"> </div>
+    <p>
+
+      -------------------------------- Video above<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+    </p>
+  </body>
+</html>

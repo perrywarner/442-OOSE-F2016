@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title> Hi I suck </title>
+		<link rel="stylesheet" href="style.css">
+
+	<script>
+	//Youtube API and player setup from here https://developers.google.com/youtube/iframe_api_reference#Getting_Started
+		var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		var player;
+		function onYouTubeIframeAPIReady() {
+			player = new YT.Player('player', {
+			height: '390',
+			width: '640',
+			videoId: '6CGyASDjE-U'
+        });
+      }
+
+		window.onscroll = function() {koolGuy(),seizure()};
+
+		function koolGuy()
+		{
+			var get_rekt = document.getElementById("player").getBoundingClientRect();
+
+			//Source of viewport dimension solution: http://stackoverflow.com/a/8876069
+			var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+			var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+			var pState = player.getPlayerState();
+
+      var yolo;
+
+      if(get_rekt.bottom < h && get_rekt.top > 0) {
+        yolo = true;
+      }
+      else {
+        yolo = false;
+      }
+
+			if(yolo == true) {
+				player.playVideo();
+			}
+			if(yolo == false){
+				player.pauseVideo();
+			}
+		}
+		function seizure() { //function name
+				var fourtwentyblazeit = '#'; // hexadecimal starting symbol
+				var letters = ['000000','FF0000','00FF00','0000FF','FFFF00','00FFFF','FF00FF','C0C0C0']; //Set your color here
+				console.log("Color:" + document.body.style.background);
+				fourtwentyblazeit += letters[Math.floor(Math.random() * letters.length)];
+				document.body.style.background = fourtwentyblazeit; // Setting the random color on your div element.
+		}
+	</script>
+</head>
+  <body>
+    <h1 class="solid"> Shrek & Pinocchio Scene </h1>
+	<p class="solid">
+Prince Charming: You! You can't lie! So tell me puppet... where... is... Shrek? <br>
+Pinocchio: Uh. Hmm, well, uh, I don't know where he's not <br>
+Prince Charming: You're telling me you don't know where Shrek is? <br>
+Pinocchio: It wouldn't be inaccurate to assume that I couldn't exactly not say that it is or isn't almost partially incorrect. <br>
+Prince Charming: So you do know where he is! <br>
+Pinocchio: On the contrary. I'm possibly more or less not definitely rejecting the idea that in no way with any amount of uncertainty that I undeniably <br>
+Prince Charming: Stop it! <br>
+Pinocchio: ...do or do not know where he shouldn't probably be, if that indeed wasn't where he isn't. Even if he wasn't at where I knew he was <br>
+[Pigs and Gingerbread Man begin singing] <br>
+Pinocchio: That'd mean I'd really have to know where he wasn't. <br>
+<div id="player"> </div>
+	</p>
+  </body>
+</html>

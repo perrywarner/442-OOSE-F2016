@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Test</title>
+    <!--
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="scrollMonitor.js"></script>
+    -->
+
+    <script type="text/javascript">
+
+        function isElementPartiallyInViewport(el)
+        {
+            //special bonus for those using jQuery
+            if (typeof jQuery !== 'undefined' && el instanceof jQuery) el = el[0];
+
+            var rect = el.getBoundingClientRect();
+            // DOMRect { x: 8, y: 8, width: 100, height: 100, top: 8, right: 108, bottom: 108, left: 8 }
+            var windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+            var windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+
+            // http://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap
+            var vertInView = (rect.top <= windowHeight) && ((rect.top + rect.height) >= 0);
+            var horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
+
+            return (vertInView && horInView);
+        }
+
+
+        // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+        function isElementInViewport (el)
+        {
+            //special bonus for those using jQuery
+            if (typeof jQuery !== 'undefined' && el instanceof jQuery) el = el[0];
+
+
+            var rect = el.getBoundingClientRect();
+            var windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+            var windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+
+            return (
+                   (rect.left >= 0)
+                && (rect.top >= 0)
+                && ((rect.left + rect.width) <= windowWidth)
+                && ((rect.top + rect.height) <= windowHeight)
+            );
+
+        }
+
+
+        function fnIsVis(ele)
+        {
+            var inVpFull = isElementInViewport(ele);
+            var inVpPartial = isElementPartiallyInViewport(ele);
+            console.clear();
+            console.log("Fully in viewport: " + inVpFull);
+            console.log("Partially in viewport: " + inVpPartial);
+        }
+
+
+        // var scrollLeft = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft,
+        // var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+
+    </script>
+
+</head>
+<body>
+
+    <div style="display: block; width: 2000px; height: 10000px; background-color: green;">
+
+        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
+
+        <input type="button" onclick="fnIsVis(document.getElementById('myele'));" value="det" />
+
+        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
+
+        <div style="background-color: crimson; display: inline-block; width: 800px; height: 500px;" ></div>
+        <div id="myele" onclick="fnIsVis(this);" style="display: inline-block; width: 100px; height: 100px; background-color: hotpink;">
+        t
+        </div>
+
+        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br />
+
+        <input type="button" onclick="fnIsVis(document.getElementById('myele'));" value="det" />
+
+    </div>
+
+    <!--
+    <script type="text/javascript">
+
+        var element = document.getElementById("myele");
+        var watcher = scrollMonitor.create( element );
+
+        watcher.lock();
+
+        watcher.stateChange(function() {
+            console.log("state changed");
+            // $(element).toggleClass('fixed', this.isAboveViewport)
+        });
+
+    </script>
+    -->
+</body>
+</html>

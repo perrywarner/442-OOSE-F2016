@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <title>
+    Practice Exam
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script>
+
+      function validYear(){
+        var pos = $("#calYear").val().search(/\d{4}$/);
+        return (pos != -1);
+      }
+      function validMonth(){
+        var pos = $("#calMonth").val().search("January", "February", "March",
+        "April", "May", "June", "July", "August", "September", "November",
+        "December");
+        return (pos != -1);
+      }
+      function validDays(){
+        var pos = $("#calDays").val().search("28","29","30","31");
+        return (pos != -1);
+      }
+      function validFirstDay(){
+        var pos = $("#calFirstDay").val().search("Sunday", "Monday",
+        "Tuesday", "Wednesday", "Thursday", "Saturday", "Sunday");
+        return (pos != -1);
+      }
+
+      $(document).ready(function(){
+
+        $("#calYear").change(function() {
+          if (!validYear()) {
+            $("#error").html("The year you entered(" + $("#calYear").val() + ") is not in the correct form. <br>" +
+                "The correct form is: #### <br>" + "Please go back and fix your life");
+          }
+        });
+
+        $("#calMonth").change(function() {
+          if (!validMonth()) {
+            $("#error").html("The month you entered (" + $("#calMonth").val() + ") is not in the correct form. <br>" +
+                "The correct form is: (consult first grade education) <br>" + "Please go back and fix your life");
+          }
+        });
+
+        $("#calDays").change(function() {
+          if (!validName()) {
+            $("#error").html("The days you entered (" + $("#calDays").val() + ") is not in the correct form. <br>" +
+                "The correct form is: 28-31 <br>" + "Please go back and fix your life");
+          }
+        });
+
+        $("#calFirstDay").change(function() {
+          if (!validName()) {
+            $("#error").html("The day you entered (" + $("#calFirstDay").val() + ") is not in the correct form. <br>" +
+                "The correct form is: (consult first grade education)" + "Please go back and fix your life");
+          }
+        });
+
+
+    </script>
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+
+    <h1>
+      Exam: Display Calendar for one month
+    </h1>
+
+    <form>
+      <input type = "text"  id = "calYear" placeholder = "2016">
+      <input type = "text"  id = "calMonth" placeholder = "March">
+      <input type = "text"  id = "calDays" placeholder = "31">
+      <input type = "text"  id = "calFirstDay" placeholder = "Sunday">
+      <input type = "reset" id = "resetButton" >
+      <input type = "submit" id = "submitButton" >
+      <br>
+      <div id="error" style="color: red;"></div>
+    </form>
+
+    <h2>
+      March 2016 Calendar
+    </h2>
+
+    <main class = "container">
+      <aside class = "col-md-1">
+        <ul class = "fa-ul" style = "background: white; color: red;">
+          <p>
+            uno
+            dos
+            tres
+            quatro
+            cinco
+          </p>
+        </ul>
+      </aside>
+      <aside class = "col-md-2">
+        <ul class = "fa-ul" style = "background: white; color: black;">
+          <p>
+            uno
+            dos
+            tres
+            quatro
+            cinco
+          </p>
+        </ul>
+      </aside>
+      <aside class = "col-md-3">
+        <ul class = "fa-ul" style = "background: white; color: black;">
+          <p>
+            uno
+            dos
+            tres
+            quatro
+            cinco
+          </p>
+        </ul>
+      </aside>
+      <aside class = "col-md-4">
+        <ul class = "fa-ul" style = "background: white; color: black;">
+          <p>
+            uno
+            dos
+            tres
+            quatro
+            cinco
+          </p>
+        </ul>
+      </aside>
+      <aside class = "col-md-5">
+        <ul class = "fa-ul" style = "background: white; color: black;">
+          <p>
+            uno
+            dos
+            tres
+            quatro
+            cinco
+          </p>
+        </ul>
+      </aside>
+      <aside class = "col-md-6">
+        <ul class = "fa-ul" style = "background: white; color: black;">
+          <p>
+            uno
+            dos
+            tres
+            quatro
+            cinco
+          </p>
+        </ul>
+      </aside>
+      <aside class = "col-md-7">
+        <ul class = "fa-ul" style = "background: white; color: black;">
+          <p>
+            uno
+            dos
+            tres
+            quatro
+            cinco
+          </p>
+        </ul>
+      </aside>
+      <!-- <aside class = "col-md-5">
+          <ul class = "fa-ul" style  = "background: pink; color: blue";>
+            <p>
+              Placeholder Subsection!
+            </p>
+          </ul>
+      </aside> -->
+    </main>
+  </body>
+
+</html>

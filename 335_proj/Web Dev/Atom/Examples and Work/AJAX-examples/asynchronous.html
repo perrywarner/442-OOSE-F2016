@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Asynchronous file upload example</title>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+      $("form").submit(function(){
+        uploadFile();
+        return false;
+      });
+		});
+		function uploadFile(){
+			var xhr = new XMLHttpRequest();
+      // load and error are events
+			xhr.addEventListener("load", transferComplete);
+			xhr.addEventListener("error", transferFailed);
+			xhr.open("POST", "http://localhost:3000/upload");
+			xhr.send(new FormData(document.getElementById('fileUpload')));
+			function transferComplete(evt){
+        //console.log(evt);
+				$("#result").html("Upload File Succeed!!" + xhr.response);
+			}
+			function transferFailed(){
+				$("#result").html("Upload File Fail!!");
+			}
+		}
+	</script>
+</head>
+<body>
+  <form id="fileUpload" enctype="multipart/form-data">
+  	<input type="file" name="file1">
+  	<input type="submit" >
+  </form>
+  <div id="result"></div>
+</body>
+</html>

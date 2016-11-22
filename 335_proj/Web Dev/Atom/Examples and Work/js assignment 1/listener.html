@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Example</title>
+</head>
+<body>
+  <h1> Listener Example </h1>
+  <p  id="dateLocation"> </p>
+  <button id="button" type="button">Click me</button>
+  <!--<button id="button" type="button" onclick="foo()">Click me</button>-->
+
+  <script >
+    function foo(){
+      var d = new Date();
+      document.getElementById("dateLocation").innerHTML=d.toString();
+    }
+
+    document.getElementById("button").addEventListener('click',foo);
+  </script>
+</body>
+</html>

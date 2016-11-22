@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript Example</title>
+</head>
+<body>
+  <h1> Hello fellow Web programmers! </h1>
+  <h3 id="h3Tag"> Don't forget to submit group name and project description</h3>
+  <button type="button" onclick="foo()">Click me</button>
+  <script >
+    function foo(){
+      document.getElementsByTagName("h1")[0].innerHTML="Don't forget to submit group name and project description";
+
+      var second = document.getElementById("h3Tag");
+      second.removeChild(second.firstChild);
+      second.appendChild(document.createTextNode("http://goo.gl/forms/eo5wnbMtXf"));
+      //second.innerHTML="http://goo.gl/forms/eo5wnbMtXf";
+      second.style.color="blue";
+    }
+  </script>
+  <!--<script  src="basic.js"></script>-->
+</body>
+</html>

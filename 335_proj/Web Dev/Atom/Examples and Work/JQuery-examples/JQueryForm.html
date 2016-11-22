@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script >
+    function validPhone(){
+      var pos = $("#phone").val().search(/^\d{3}-\d{3}-\d{4}$/);
+      return (pos != -1);
+    }
+    function validName(){
+      var pos = $("#custName").val().search(/^[A-Z][a-z]+, [A-Z][a-z]+$/);
+      return (pos != -1);
+    }
+    $(document).ready(function(){
+
+      $("#custName").change(function() {
+        if (!validName()) {
+          $("#error").html("The name you entered (" + $("#custName").val() + ") is not in the correct form. <br>" +
+              "The correct form is: Last-name, First-name <br>" + "Please go back and fix your name");
+        }
+      });
+      $("#phone").change(function() {
+        if (!validPhone()) {
+          $("#error").html("The phone number you entered (" + $("#phone").val() + ") is not in the correct form. <br>" +
+                 "The correct form is: ddd-ddd-dddd <br> Please go back and fix your phone number");
+        }
+      });
+      $("form").submit(function(){
+        if (!validName() || !validPhone()) {
+          $("#error").html("<br> Fix your inputs.");
+        }
+        console.log("The name entered: " + $("#custName").val() + " and the phone entered: " + $("#phone").val());
+        return validName() && validPhone();
+      });
+    });
+  </script>
+  <title>JavaScript Example</title>
+</head>
+<body>
+  <h1> Form validation Example </h1>
+  <form>
+    <input type = "text"  id = "custName" placeholder="last, first name ">
+     <input type = "text"  id = "phone" placeholder="Phone No. (ddd-ddd-dddd)">
+    <input type = "reset"  id = "reset" >
+    <input type = "submit"  id = "submit" >
+    <br>
+    <div id="error" style="color: red;"></div>
+  </form>
+
+</body>
+</html>

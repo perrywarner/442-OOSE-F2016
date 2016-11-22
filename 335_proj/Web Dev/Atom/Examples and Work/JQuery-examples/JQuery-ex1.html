@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script >
+    $(document).ready(function(){
+
+    var pw1 = $("#first").change(function);
+    var pw2 = $("#second").change(function);
+
+    var emptystring = "";
+
+    if ((pw1 || pw2) = emptystring)
+    {
+      $("#myForm").submit(function){
+        $("error").html("You entered nothing as one of your inputs.");
+      }
+    }
+
+    if ((pw1 != pw2)
+    {
+      $("#myForm").submit(function){
+        $("error").html("Your passwords are not the same.");
+      }
+    }
+  </script>
+  <title>JavaScript Example</title>
+</head>
+<body>
+  <h1> Form validation Example </h1>
+  <form id="myForm">
+    <input type = "password"  id = "first" placeholder="Password">
+    <input type = "password"  id = "second" placeholder="Re-enter Password">
+    <input type = "reset"  id = "reset" >
+    <input type = "submit"  id = "submit" >
+    <div id="error" style="color: red;"></div>
+  </form>
+</body>
+</html>

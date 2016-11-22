@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("button").click(function(){
+        $("#demo").load("ajax_info.txt", function(responseTxt, statusTxt, xhr){
+          //console.log(responseTxt);
+          //console.log(statusTxt);
+          // xhr is just a string. JSON will convert the string to javascript Object Notation
+          //console.log(JSON.stringify(xhr));
+          if(statusTxt == "success")
+            console.log("External content loaded successfully!");
+          if(statusTxt == "error")
+            console.log("Error: " + xhr.status + ": " + xhr.statusText);
+        });
+      });
+    });
+  </script>
+<title>AJAX example with jQuery</title>
+</head>
+<body>
+  <div id="demo"><h2>Let jQuery AJAX change this text</h2></div>
+  <button type="button">Change Content</button>
+</body>
+</html>

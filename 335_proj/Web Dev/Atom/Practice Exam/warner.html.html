@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Multiplication Table</title>
+  <style>
+	 calendar > div {float:left; width:80px;}
+   .end{clear:both;}
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script><script>
+    function display(){
+      $("#heading").html($("#inputRow").val() +" "+ $("#year").val() + " Calendar");
+
+      var col;
+      for (col = 0; col < 7 ; col++) {
+        $("#calendar").append("<div>" + inttoday(col) + "</div>");
+      }
+      $("#calendar").append("<div class=\"end\"></div>");
+
+      var row, maxInt, day=1;
+      maxInt = findMax($("#inputRow","#inputCol").val());
+
+      for (row = 0 ; row < maxInt; row++)
+        $("#calendar").append("<div> &nbsp;</div>");
+
+      for (row = maxInt ; row < col; row++)
+        $("#calendar").append("<div>" + day++  + " </div>");
+
+      $("#calendar").append("<div class=\"end\"></div>");
+
+      var saveRow = row;
+      var saveCol = col;
+      row = 1
+      do{
+        if (row % saveRow == 1)
+          $("#calendar").append("<div style=\"color:red;\">" + getNum(row,col) + "</div>");
+        else
+          $("#calendar").append("<div>" + getNum(row,col) + "</div>");
+
+        if (row++ % saveRow == 0)
+          $("#calendar").append("<div class=\"end\"></div>");
+      } while (row < saveCol)
+
+      col = 1
+      do{
+        if (row % saveCol == 1)
+          $("#calendar").append("<div style=\"color:red;\">" + getNum(row,col) + "</div>");
+        else
+          $("#calendar").append("<div>" + getNum(row,col) + "</div>");
+
+        if (row++ % saveCol == 0)
+          $("#calendar").append("<div class=\"end\"></div>");
+      } while (col < saveRow)
+
+    }
+
+    function getNum(currentrow,currentcol)
+    {
+      var currentrow;
+      var currentcol;
+      var currentnum;
+
+      for(int i = 0; i < row; i++)
+      {
+          for(int j = 0; j < col; j++)
+          {
+             currentnum = row * col;
+             return currentnum;
+             // It'd be easier to just display and append here
+             // Unfortunately, I don't know how to append to the individual locations
+             // Specific language operators made me fail here
+          }
+      }
+    }
+
+    function findMax(first,second) {
+      return {[first * second]};
+    }
+
+    function whicheverBigger(a,b)
+    {
+      if (a > b)
+      {
+        return a
+      }
+      if (b >= a)
+      {
+        return b
+      }
+    }
+
+    function validRow(){
+      var pos = $("#calYear").val().search(/\d{2}$/);
+      return (pos != -1);
+    }
+    function validCol(){
+      var pos = $("#calYear").val().search(/\d{2}$/);
+      return (pos != -1);
+    }
+
+    $(document).ready(function(){
+      $("#inputRow").change(function() {
+        if (!validRow()) {
+          $("#error").html("The <strong>Row</strong> you entered is not in the correct form");
+        }
+      });
+      $("#inputCol").change(function() {
+        if (!validCol()) {
+          $("#error").html("The <strong>Column</strong> you entered is not in the correct form");
+        }
+      });
+      $("form").submit(function(){
+        if (!validRow() || !validCol()) {
+          $("#error").html("<br> Fix your inputs.");
+          console.log("Year: " + $("#inputRow").val() + ", Month: " + $("#inputRow").val());
+          console.log("Days: " + $("#inputCol").val() + ", Frist day of the week: " + $("#inputCol").val());
+        }
+        else{
+          display();
+        }
+        return false;
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1> Exam: Display Multiplication Table</h1>
+  <form>
+    <input id="inputRow" placeholder="Row (e.g., 10)" type="text">
+      &nbsp; Enter a number for a row (Max: 99)<br>
+    <input id="inputCol" placeholder="Column (e.g., 8) " type="text">
+      &nbsp; Enter a number for a column (Max: 99)<br>
+
+    <input id="reset" type="reset">
+    <input id="submit" type="submit">
+    <br>
+    <div id="error" style="color: red;"></div>
+    <h2 id="heading"></h2>
+    <calendar id="calendar"></calendar>
+  </form>
+
+
+</body>

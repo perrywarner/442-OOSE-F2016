@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Monthly Calendar</title>
+  <style>
+	 calendar > div {float:left; width:80px;}
+   .end{clear:both;}
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script><script>
+    function display(){
+      $("#heading").html($("#month").val() +" "+ $("#year").val() + " Calendar");
+
+      var col;
+      for (col = 0; col < 7 ; col++) {
+        $("#calendar").append("<div>" + inttoday(col) + "</div>");
+      }
+      $("#calendar").append("<div class=\"end\"></div>");
+
+      var row, counter, day=1;
+      counter = daytoint($("#firstday").val());
+
+      for (row = 0 ; row < counter; row++)
+        $("#calendar").append("<div> &nbsp;</div>");
+
+      for (row = counter ; row < 7; row++)
+        $("#calendar").append("<div>" + day++  + " </div>");
+
+      $("#calendar").append("<div class=\"end\"></div>");
+
+      row = 1
+      do{
+        if (row % 7 == 1)
+          $("#calendar").append("<div style=\"color:red;\">" + (day++) + "</div>");
+        else
+          $("#calendar").append("<div>" + (day++) + "</div>");
+
+        if (row++ % 7 == 0)
+          $("#calendar").append("<div class=\"end\"></div>");
+      } while (day <= $("#maxdays").val())
+
+    }
+
+    function daytoint(dayname) {
+      return {
+        "Sunday": 0, "Monday": 1, "Tuesday": 2,
+        "Wednesday": 3,"Thursday": 4,"Friday": 5,"Saturday":6
+      }[dayname];
+    }
+
+    function inttoday(number) {
+      return ["Sunday","Monday","Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][number];
+    }
+
+    function validYear(){
+      var pos = $("#year").val().search(/^\d{4}$/);
+      console.log("Pos at Year: " + pos);
+      return (pos != -1);
+    }
+    function validMonth(){
+      return {
+        "January": 0, "February": 1, "March": 2, "April": 3, "May": 4, "June": 5,
+        "July": 6, "August": 7, "September": 8, "October": 9, "November": 10, "December": 11,
+      }[$("#month").val()];
+    }
+    function validDays(){
+      return ($("#maxdays").val()>=28 && $("#maxdays").val()<=31);
+    }
+    function validFirstDay(){
+      return daytoint($("#firstday").val())>=0 && daytoint($("#firstday").val())<=6;
+    }
+    $(document).ready(function(){
+      $("#year").change(function() {
+        if (!validYear()) {
+          $("#error").html("The <strong>year</strong> you entered is not in the correct form");
+        }
+      });
+      $("#month").change(function() {
+        if (!validMonth()) {
+          $("#error").html("The <strong>month</strong> you entered is not in the correct form");
+        }
+      });
+      $("#maxdays").change(function() {
+        if (!validDays()) {
+          $("#error").html("The <strong>days</strong> you entered is not in the correct form");
+        }
+      });
+      $("#firstday").change(function() {
+        if (!validFirstDay()) {
+          $("#error").html("The <strong>days of the week</strong> you entered is not in the correct form");
+        }
+      });
+      $("form").submit(function(){
+        if (!validYear() || !validDays() || !validDays() || !validFirstDay()) {
+          $("#error").html("<br> Fix your inputs.");
+          console.log("Year: " + $("#year").val() + ", Month: " + $("#month").val());
+          console.log("Days: " + $("#maxdays").val() + ", Frist day of the week: " + $("#firstday").val());
+        }
+        else{
+          display();
+        }
+        return false;
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1> Exam: Display Calendar for one month</h1>
+  <form>
+    <input id="year" placeholder="Year (e.g., 2016)" type="text">
+      &nbsp; What Year is this calendar for?<br>
+    <input id="month" placeholder="Month (e.g., March or Mar) " type="text">
+      &nbsp; What Month is this calendar for?<br>
+    <input id="maxdays" placeholder="days of the month (e.g., 31)" type="text">
+      &nbsp; How many days does this month have?<br>
+    <input id="firstday" placeholder="First day of the month (e.g., Tuesday)" type="text">
+      &nbsp; What is the first day of the month?<br>
+
+    <input id="reset" type="reset">
+    <input id="submit" type="submit">
+    <br>
+    <div id="error" style="color: red;"></div>
+    <h2 id="heading"></h2>
+    <calendar id="calendar"></calendar>
+  </form>
+
+
+</body>

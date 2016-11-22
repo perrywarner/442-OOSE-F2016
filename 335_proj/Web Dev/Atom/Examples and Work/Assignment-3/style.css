@@ -1,0 +1,16 @@
+h1.solid {
+  padding: 10px;
+  margin-bottom: -30px;
+  padding-bottom: 10px;
+  border-bottom: 0;
+  border-style: solid;
+  font-size: 350%;
+}
+p.solid {
+  padding: 10px;
+  border-top: 0;
+  border-style: solid;
+  font-size: 150%;
+  text-align: left;
+  z-index: -1;
+}

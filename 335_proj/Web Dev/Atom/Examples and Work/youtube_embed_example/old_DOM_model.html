@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+  <head>
+    <title>Start playing a video, when you scroll there</title>
+  </head>
+  <body onload="checkStart('vid');">
+    <div style="width: 100%; height: 150%; background: #aaaaaa;">
+      <h1>Scroll down to start the video</h1>
+    </div>
+
+    <video src="video.ogg" id="vid" controls>
+      Your browser doesn't support this video. Please upgrade your browser.
+    </video>
+    <script>
+      function inViewPort (elem) {
+        //First get the scroll y position (how far the user scrolled down)
+        var scrollY = document.body.scrollTop;
+        //Now get the height of the viewport
+        var screenH=document.body.clientHeight;
+        //Also get the y position of the element
+        var yPos=elem.offsetTop;
+        //And now calculate the maximal y position for elem when it is still visible
+        var maxY=scrollY+screenH;
+
+        if (yPos>scrollY && yPos<maxY) {
+          //It is in the users viewport
+          return true;
+        } else {
+          //It isn't in the users viewport
+          return false;
+        }
+      }
+
+      function checkStart (videoName) {
+        var elem = document.getElementById(videoName);
+        if (inViewPort(elem)) {
+          elem.load();
+          elem.play();
+        } else if (!elem.ended) {
+          setTimeout("checkStart('"+videoName+"');", 100);
+        }
+      }
+    </script>
+  </body>
